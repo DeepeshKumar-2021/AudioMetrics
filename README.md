@@ -8,7 +8,12 @@ do following configuration changes to freeswitch:
 
 make below changes in conf/sip_profiles/internal.xml
 <param name="enable-timer" value="false"/>
-<param name="auto-jitterbuffer-msec" value="60"/>
+
+make following changes to conf/dialplan/default.xml
+<action application="set" data="jitterbuffer_msec=60:200:20"/>
+<action application="set" data="rtp_jitter_buffer_during_bridge=true"/>
+
+you can refer files in AudioMetrics repository.
 
 build freeswitch with below commands:
 run below command in freeswitch source directory:
