@@ -2090,7 +2090,7 @@ static int check_rtcp_and_ice(switch_rtp_t *rtp_session)
 
                  switch_log_printf(SWITCH_CHANNEL_LOG, SWITCH_LOG_ERROR, "AUDIO QUALITY METRICS ==> Jitter buffer consumed: %d \n",jb_len);
 		 if(rtp_session->send_time >= rtp_session->last_read_time)
-		 switch_log_printf(SWITCH_CHANNEL_LOG, SWITCH_LOG_ERROR, "AUDIO QUALITY METRICS ==> Audio processing time: %d \n",(int)((rtp_session->send_time-rtp_session->last_read_time)/1000));
+		 switch_log_printf(SWITCH_CHANNEL_LOG, SWITCH_LOG_ERROR, "AUDIO QUALITY METRICS ==> Audio processing time: %d ms\n",(int)((rtp_session->send_time-rtp_session->last_read_time)/1000));
                 switch_log_printf(SWITCH_CHANNEL_LOG, SWITCH_LOG_ERROR, "AUDIO QUALITY METRICS ==> Packets Discarded: %d \n",d_len);
 
                  log_audio_metric = now;
