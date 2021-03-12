@@ -1,0 +1,5 @@
+I am not abe to get the "Audio Level" metric as I did not find any way to get it from RTP module.
+From RTP module we can get Audio Level only if header extension is supported.
+
+I did not find way to get it from other modules.
+About jitter buffer, as per my analysis of code, I feel it is better handled for video compare to voice/audio.
