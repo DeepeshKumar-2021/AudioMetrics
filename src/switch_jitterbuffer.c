@@ -112,7 +112,7 @@ struct switch_jb_s {
 	uint32_t period_len;
 	uint32_t nack_saved_the_day;
 	uint32_t nack_didnt_save_the_day;
-	uint32_t packet_discarded;
+	uint32_t packet_discarded;//Audio Quality Mteric- Packets discarded
 };
 
 
@@ -589,7 +589,7 @@ static inline void drop_oldest_frame(switch_jb_t *jb)
 	uint32_t ts = jb_find_lowest_ts(jb);
 
 	drop_ts(jb, ts);
-	jb->packet_discarded++;
+	jb->packet_discarded++;//Audio Quality Mteric- Packets discarded
 	jb_debug(jb, 1, "Dropping oldest frame ts:%u\n", ntohl(ts));
 }
 
@@ -1506,6 +1506,7 @@ SWITCH_DECLARE(switch_status_t) switch_jb_get_packet(switch_jb_t *jb, switch_rtp
 	return status;
 }
 
+//Audio Quality Mteric- Packets discarded
 SWITCH_DECLARE(int) switch_jb_discarded_count(switch_jb_t *jb)
 {
 	return jb->packet_discarded;

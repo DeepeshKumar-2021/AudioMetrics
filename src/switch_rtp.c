@@ -87,7 +87,7 @@ static const switch_payload_t INVALID_PT = 255;
 								 * characters when sending, but an implementation MUST accept up to 256
 								 * characters when receiving." */
 
-static switch_time_t log_audio_metric = 0;
+static switch_time_t log_audio_metric = 0;////Audio Quality Mteric-logging
 
 static switch_port_t START_PORT = RTP_START_PORT;
 static switch_port_t END_PORT = RTP_END_PORT;
@@ -2054,8 +2054,8 @@ static int check_rtcp_and_ice(switch_rtp_t *rtp_session)
 	int rate = 0, nack_ttl = 0, nack_dup = 0; 
 	uint32_t cur_nack[MAX_NACK] = { 0 };
 	uint16_t seq = 0;
-	uint32_t jb_len = 0;
-	uint32_t d_len = 0;
+	uint32_t jb_len = 0;//Audio Quality Metric- Jitter buffer consumed
+	uint32_t d_len = 0;//Audio Quality Mteric- Packets discarded
 
 	if (!rtp_session->flags[SWITCH_RTP_FLAG_UDPTL] &&
 		rtp_session->flags[SWITCH_RTP_FLAG_AUTO_CNG] &&
@@ -2079,6 +2079,7 @@ static int check_rtcp_and_ice(switch_rtp_t *rtp_session)
 
 	rate = rtp_session->rtcp_interval;
  
+//=====================Audio Quality Metrcis==========================Start
 //	if(switch_channel_direction(channel) == SWITCH_CALL_DIRECTION_INBOUND){
 	if((int)((now - log_audio_metric) / 1000) > 5000)
 	{
@@ -2095,6 +2096,7 @@ static int check_rtcp_and_ice(switch_rtp_t *rtp_session)
                  log_audio_metric = now;
 	}
 //	}
+//=====================Audio Quality Metrcis==========================End
 
 	if (rtp_session->flags[SWITCH_RTP_FLAG_NACK] && rtp_session->vb) {
 		int n;
